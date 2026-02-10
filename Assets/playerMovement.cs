@@ -8,6 +8,7 @@ public class playerMovement : MonoBehaviour
     [SerializeField]private int remainingHealth;
     [SerializeField]private int remainingMagic;
     [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float randomNumber = 5f;
 
     private Rigidbody2D rb;
     private Vector2 movement;
@@ -51,7 +52,6 @@ public class playerMovement : MonoBehaviour
         
     }
 }
-
 
 
 

@@ -180,5 +180,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemy
   moveSpeed: 1
-  chaseRange: 5
+  chaseRange: 10
   maxHealth: 5

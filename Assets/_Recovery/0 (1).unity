@@ -1232,6 +1232,13 @@ MonoBehaviour:
   remainingHealth: 0
   remainingMagic: 0
   moveSpeed: 5
+  idleUp: {fileID: 0}
+  idleRight: {fileID: 0}
+  idleDown: {fileID: 0}
+  idleLeft: {fileID: 0}
+  spriteVisual: {fileID: 0}
+  bobAmount: 0.03
+  bobSpeed: 14
 --- !u!61 &2086643658
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1319,6 +1326,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   spellPrefab: {fileID: 7024704973621417112, guid: 30b9bf4c5c89b0f47af146fb57975217, type: 3}
   spellSpeed: 12
+  aimPivot: {fileID: 0}
   firePoint: {fileID: 620348805}
 --- !u!1001 &2112878226
 PrefabInstance:

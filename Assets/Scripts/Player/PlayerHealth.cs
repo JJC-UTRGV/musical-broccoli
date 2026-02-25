@@ -72,7 +72,4 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("Player died!");
         Destroy(gameObject);
     }
-
-    public int CurrentHealth => currentHealth;
-    public int MaxHealth => maxHealth;
 }

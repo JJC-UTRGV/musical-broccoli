@@ -65,8 +65,26 @@ public class TilemapWallManager : MonoBehaviour
         wallTilemap.SetTile(tilePos, null);
         wallHealth.Remove(tilePos);
 
-        // Optional: Add visual/audio effects here
-        // Instantiate a destruction effect, play sound, etc.
+        // Create destruction effect at world position
+        if (destructionEffectPrefab != null)
+        {
+            Vector3 worldPos = wallTilemap.GetCellCenterWorld(tilePos);
+            Instantiate(destructionEffectPrefab, worldPos, Quaternion.identity);
+        }
+
+        // Play break sound
+        if (wallBreakSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(wallBreakSound);
+        }
+    }
+
+    public void DestroyWallAtInstant(Vector3Int tilePos)
+    {
+        if (wallHealth.ContainsKey(tilePos))
+        {
+            DestroyWallAt(tilePos);
+        }
     }
 
     public int GetWallHealthAt(Vector3Int tilePos)

@@ -269,6 +269,7 @@ GameObject:
   m_Component:
   - component: {fileID: 163098923435995128}
   - component: {fileID: 3272589346017553012}
+  - component: {fileID: -8708775718725366455}
   m_Layer: 0
   m_Name: GameTileSet
   m_TagString: Untagged
@@ -304,6 +305,22 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
+--- !u!114 &-8708775718725366455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4852519212713435595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57e6ea1d6ea086d4fbed1f95c026e0cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TilemapWallManager
+  wallTilemap: {fileID: 0}
+  wallMaxHealth: 3
+  destructionEffectPrefab: {fileID: 742585151705318659, guid: dd4cb9c573650194380f5e08aa9bfc84, type: 3}
+  wallBreakSound: {fileID: 8300000, guid: 7ebf5920c8ce6f24894db2a18604f5a5, type: 3}
 --- !u!114 &2916725964197678745
 MonoBehaviour:
   m_ObjectHideFlags: 0

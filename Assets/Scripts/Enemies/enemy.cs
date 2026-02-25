@@ -37,6 +37,8 @@ public class Enemy : MonoBehaviour
 
     private Color originalColor;
     private float flashTimer;
+    [Header("Rewards")]
+    [SerializeField] private int scoreValue = 10;
 
     void Awake()
     {
@@ -156,6 +158,9 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
+        if (GameSession.Instance != null)
+            GameSession.Instance.RegisterEnemyKill(scoreValue);
+            
         Destroy(gameObject);
     }
 }

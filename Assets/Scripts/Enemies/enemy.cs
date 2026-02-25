@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Enemy : MonoBehaviour
 {
@@ -28,9 +29,16 @@ public class Enemy : MonoBehaviour
     private SpriteRenderer sr;
 
     private float knockTimer;
+    [Header("Wall Interaction")]
+    [SerializeField] private int wallDamageOnPath = 1;
+    [SerializeField] private float wallDamageInterval = 0.5f;
+    private float wallDamageTimer = 0f;
+    private TilemapWallManager wallManager;
 
     private Color originalColor;
     private float flashTimer;
+    [Header("Rewards")]
+    [SerializeField] private int scoreValue = 10;
 
     void Awake()
     {
@@ -45,6 +53,8 @@ public class Enemy : MonoBehaviour
 
         GameObject p = GameObject.FindGameObjectWithTag("Player");
         if (p != null) player = p.transform;
+
+        wallManager = FindObjectOfType<TilemapWallManager>();
     }
 
     void FixedUpdate()
@@ -73,6 +83,35 @@ public class Enemy : MonoBehaviour
         if (distanceToPlayer <= chaseRange)
         {
             Vector2 direction = ((Vector2)player.position - rb.position).normalized;
+
+            // Check for walls between enemy and player
+            if (wallManager != null)
+            {
+                RaycastHit2D[] hits = Physics2D.RaycastAll(rb.position, direction, distanceToPlayer);
+                foreach (var hit in hits)
+                {
+                    if (hit.collider == null) continue;
+                    var tilemapCollider = hit.collider.GetComponentInParent<TilemapCollider2D>();
+                    if (tilemapCollider != null)
+                    {
+                        Tilemap tilemap = tilemapCollider.GetComponent<Tilemap>();
+                        if (tilemap != null)
+                        {
+                            // damage on interval
+                            wallDamageTimer -= Time.fixedDeltaTime;
+                            if (wallDamageTimer <= 0f)
+                            {
+                                Vector3Int tilePos = tilemap.WorldToCell(hit.point);
+                                wallManager.DamageWallAt(tilePos, wallDamageOnPath);
+                                wallDamageTimer = wallDamageInterval;
+                            }
+
+                            // stop at first tilemap hit
+                            break;
+                        }
+                    }
+                }
+            }
 
             rb.linearVelocity = direction * moveSpeed;
             UpdateFacing(direction);
@@ -119,6 +158,9 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
+        if (GameSession.Instance != null)
+            GameSession.Instance.RegisterEnemyKill(scoreValue);
+            
         Destroy(gameObject);
     }
 }

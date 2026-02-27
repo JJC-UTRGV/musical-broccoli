@@ -12,6 +12,9 @@ public class PlayerHealth : MonoBehaviour
     private float invulnTimer;
     private float blinkTimer;
     private bool blinkState = true;
+    private bool isDead = false;
+
+    public GameOverController gameOverController;
 
     private SpriteRenderer sr;
 
@@ -69,8 +72,14 @@ public class PlayerHealth : MonoBehaviour
 
     private void Die()
     {
+        if (isDead) return;
+        isDead = true; 
+
         Debug.Log("Player died!");
-        Destroy(gameObject);
+        if (gameOverController != null)
+            gameOverController.ShowGameOver();
+
+        gameObject.SetActive(false);
     }
     public int CurrentHealth => currentHealth;
     public int MaxHealth => maxHealth;

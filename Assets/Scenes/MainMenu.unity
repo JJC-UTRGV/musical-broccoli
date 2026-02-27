@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 52197193}
   - component: {fileID: 52197192}
   - component: {fileID: 52197191}
+  - component: {fileID: 52197194}
   m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
@@ -252,6 +253,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 52197189}
   m_CullTransparentMesh: 1
+--- !u!114 &52197194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52197189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85f13261c974c764da33d4e0673e39c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &53780937
 GameObject:
   m_ObjectHideFlags: 0
@@ -996,11 +1009,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 844e39f44a7f215499c94a15b0097fef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameBalanceSettings
-  difficulty: 1
-  enemySpawnRateMult: 1
-  enemyHealthMult: 1
-  enemySpeedMult: 1
-  playerMaxHealth: 5
 --- !u!4 &1733909561
 Transform:
   m_ObjectHideFlags: 0
@@ -1028,11 +1036,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 844e39f44a7f215499c94a15b0097fef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameBalanceSettings
-  difficulty: 1
-  enemySpawnRateMult: 1
-  enemyHealthMult: 1
-  enemySpeedMult: 1
-  playerMaxHealth: 5
 --- !u!1 &1771298337
 GameObject:
   m_ObjectHideFlags: 0

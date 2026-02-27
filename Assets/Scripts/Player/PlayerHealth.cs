@@ -81,6 +81,12 @@ public class PlayerHealth : MonoBehaviour
 
         gameObject.SetActive(false);
     }
+
+    public void Heal(int amount)
+    {
+        currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
+    }
+
     public int CurrentHealth => currentHealth;
     public int MaxHealth => maxHealth;
 }

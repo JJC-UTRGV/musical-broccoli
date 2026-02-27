@@ -284,6 +284,12 @@ MonoBehaviour:
   knockbackTime: 0.1
   hitFlashColor: {r: 1, g: 0.35, b: 0.35, a: 1}
   flashTime: 0.08
+  wallDamageOnPath: 1
+  wallDamageInterval: 0.5
+  scoreValue: 10
+  isHealer: 0
+  healAmount: 1
+  healerColor: {r: 0.35, g: 1, b: 0.35, a: 1}
 --- !u!114 &-3420889312759473343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,6 +303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   contactDamage: 1
+  wallDamage: 1
 --- !u!114 &6345246851426016979
 MonoBehaviour:
   m_ObjectHideFlags: 0

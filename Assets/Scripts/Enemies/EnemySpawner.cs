@@ -81,7 +81,15 @@ public class EnemySpawner : MonoBehaviour
         Vector2 spawnPos = GetRandomOffscreenPositionAroundPlayer();
         GameObject e = Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
 
-        
+        Enemy enemy = e.GetComponent<Enemy>();
+
+        float healerChance = 0.10f;
+
+        if (enemy != null)
+        {
+            enemy.SetHealer(Random.value < healerChance);
+        }
+
         alive.Add(e);
     }
 

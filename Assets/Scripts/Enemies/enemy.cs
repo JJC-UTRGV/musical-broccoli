@@ -40,6 +40,15 @@ public class Enemy : MonoBehaviour
     [Header("Rewards")]
     [SerializeField] private int scoreValue = 10;
 
+    [Header("Healer Goblin")]
+    [SerializeField] private bool isHealer = false;
+    [SerializeField] private int healAmount = 1;
+    [SerializeField] private Color healerColor = new Color(0.35f, 1f, 0.35f, 1f);
+
+    private PlayerHealth playerHealth;
+
+
+
     void Awake()
     {
         currentHealth = maxHealth;
@@ -52,11 +61,20 @@ public class Enemy : MonoBehaviour
         if (sr != null) originalColor = sr.color;
 
         GameObject p = GameObject.FindGameObjectWithTag("Player");
-        if (p != null) player = p.transform;
+        if (p != null)
+        {
+            player = p.transform;
+            playerHealth = p.GetComponent<PlayerHealth>();
+        }
 
         wallManager = FindObjectOfType<TilemapWallManager>();
+    
+        if (isHealer && sr != null)
+        {
+            sr.color = healerColor;
+            originalColor = healerColor;
+        }
     }
-
     void FixedUpdate()
     {
         
@@ -160,7 +178,22 @@ public class Enemy : MonoBehaviour
     {
         if (GameSession.Instance != null)
             GameSession.Instance.RegisterEnemyKill(scoreValue);
+
+        if (isHealer && playerHealth != null)
+        {
+            playerHealth.Heal(healAmount);
+        }
             
         Destroy(gameObject);
+    }
+    public void SetHealer(bool value)
+    {
+        isHealer = value;
+    
+        if (isHealer && sr != null)
+        {
+            sr.color = healerColor;
+            originalColor = healerColor;
+        }
     }
 }
